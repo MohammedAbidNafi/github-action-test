@@ -19,13 +19,13 @@ jobs:
           bun-version: latest
 
       - name: Create T3 app
-        run: npm create next-app@latest --yes test-app
+        run: bun create next-app@latest --yes test-app
 
       - name: Install dependencies
         run: |
           cd test-app
           bun install
 
-      - name: Run dev
+      - name: Run build
         run: |
-          bun dev
+          bun run build
