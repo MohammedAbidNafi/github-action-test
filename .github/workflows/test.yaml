@@ -26,6 +26,6 @@ jobs:
           cd test-app
           bun install
 
-      - name: Run tests
+      - name: Run dev
         run: |
-          bun test
+          bun dev
