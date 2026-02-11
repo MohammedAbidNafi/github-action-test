@@ -30,3 +30,8 @@ jobs:
         run: |
           cd test-app
           bun run build
+
+      - name: Run Dev
+        run: |
+          cd test-app
+          bun run dev
