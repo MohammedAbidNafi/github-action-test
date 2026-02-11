@@ -28,4 +28,5 @@ jobs:
 
       - name: Run build
         run: |
+          cd test-app
           bun run build
