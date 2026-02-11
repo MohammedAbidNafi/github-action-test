@@ -19,4 +19,4 @@ jobs:
           bun-version: latest
 
       - name: Create T3 app
-        run: bun create t3-app@latest .
+        run: npm create next-app@latest --yes .
