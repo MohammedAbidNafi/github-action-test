@@ -31,7 +31,24 @@ jobs:
           cd test-app
           bun run build
 
-      - name: Run Dev
+      - name: Start dev server (background)
         run: |
           cd test-app
-          bun run dev
+          nohup bun run dev -- --hostname 0.0.0.0 --port 3000 > dev.log 2>&1 &
+
+      - name: Install cloudflared
+        run: |
+          curl -L https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64 -o /usr/local/bin/cloudflared
+          chmod +x /usr/local/bin/cloudflared
+
+      - name: Start tunnel (public URL)
+        run: |
+          echo "Waiting for dev server..."
+          for i in {1..30}; do
+            if curl -sSf http://localhost:3000 >/dev/null; then
+              break
+            fi
+            sleep 1
+          done
+          echo "Public URL (look for https://*.trycloudflare.com in logs):"
+          cloudflared tunnel --url http://localhost:3000 --no-autoupdate
