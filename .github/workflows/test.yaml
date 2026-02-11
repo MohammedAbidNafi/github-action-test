@@ -20,3 +20,12 @@ jobs:
 
       - name: Create T3 app
         run: npm create next-app@latest --yes test-app
+
+      - name: Install dependencies
+        run: |
+          cd test-app
+          bun install
+
+      - name: Run tests
+        run: |
+          bun test
