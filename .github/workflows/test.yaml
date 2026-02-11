@@ -18,5 +18,5 @@ jobs:
         with:
           bun-version: latest
 
-      - name: Create Hono app
-        run: bun create cloudflare@latest my-hono-app --framework=hono --ts
+      - name: Create T3 app
+        run: bun create t3-app@latest
